@@ -286,10 +286,10 @@ body {
     }
 
     .history-only #history {
-        margin: 10px 10px 10px 10px; /* Margin of 10px on top and left, 25px on right and bottom */
+        margin: 10px 25px 25px 10px; /* Margin of 10px on top and left, 25px on right and bottom */
         padding: 0;
         border-radius: 0;
-        height: calc(100vh - 35px); /* Full height minus margin */
-        width: calc(100% - 35px); /* Full width minus margin */
+        height: calc(100vh - 20px); /* Full height minus margin */
+        width: calc(100% - 20px); /* Full width minus margin */
     }
 }
