@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="map"></div>
+        <div id="history">
+            <div id="historyHeader">
+                <h2>History Track</h2>
+                <button id="downloadHistory" title="Download History">
+                    <i class="fas fa-download"></i>
+                </button>
+                <div id="downloadMenu" class="dropdown-content">
+                    <a href="#" id="downloadPDF">Download PDF</a>
+                    <a href="#" id="downloadExcel">Download Excel</a>
+                </div>
+            </div>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+    <div id="controls">
+        <button id="focusPlotter">Center Point</button>
+        <button id="toggleStreetView">Street View</button>
+        <button id="toggleTracking">Tracking</button>
+    </div>
+    <button id="toggleHistoryMenu" class="history-menu-button">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="sidebar" class="sidebar">
+        <a href="#" id="menuMaps">Maps</a>
+        <a href="#" id="menuHistory">History</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

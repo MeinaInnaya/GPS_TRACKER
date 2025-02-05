@@ -1,0 +1,295 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EEEDEB;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 60px); /* Adjust height to fit the screen */
+    transition: transform 0.5s ease-in-out; /* Smooth transition for container */
+}
+
+#map {
+    flex: 3;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease-in-out; /* Smooth transition for map */
+    min-height: 300px; /* Ensure minimum height for the map */
+}
+
+#history {
+    flex: 1;
+    padding: 10px;
+    background-color: #D8D9DA;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    transition: transform 0.5s ease-in-out; /* Smooth transition for history */
+    position: relative; /* For positioning the download button */
+}
+
+#historyHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#historyHeader h2 {
+    margin: 0;
+    font-size: 18px; /* Smaller font size for the title */
+    flex: 1;
+    text-align: center;
+}
+
+#downloadHistory {
+    position: absolute;
+    right: 0;
+    top: 1px; /* Add margin from the top */
+    background-color: #0f7c7c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px; /* Smaller width */
+    height: 30px; /* Smaller height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for button */
+}
+
+#downloadHistory i {
+    font-size: 14px; /* Smaller icon size */
+}
+
+#downloadHistory:hover {
+    background-color: hsla(178, 98%, 16%, 0.808);
+    transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px; /* Position below the button */
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+#historyHeader:hover .dropdown-content {
+    display: block;
+}
+
+#historyList {
+    list-style-type: none;
+    padding: 0;
+    font-size: 12px; /* Smaller font size for the list */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#historyList li {
+    margin-bottom: 5px;
+    padding: 5px; /* Smaller padding for the list items */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards; /* Fade in and slide up animation */
+}
+
+#historyList li:nth-child(odd) {
+    background-color: #e9e9e9;
+}
+
+.history-time {
+    font-size: 10px; /* Smaller font size for the time */
+    color: #666;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0; /* Reduce margin to move buttons up */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+#controls button {
+    width: 100px; /* Set width */
+    height: 38px; /* Set height */
+    margin: 2px; /* Adjust margin for better spacing */
+    font-size: 14px; /* Adjust font size */
+    border: none;
+    border-radius: 20px; /* Make the container oval */
+    background-color: #0f7c7c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls button:hover {
+    background-color: hwb(178 0% 69% / 0.877);
+    transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+.history-menu-button {
+    display: none; /* Hide by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: hwb(178 0% 69% / 0.877);
+    color: white;
+    border: none;
+    font-size: 24px; /* Increase font size for bars icon */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.history-menu-button:hover {
+    background-color:  hwb(178 0% 69% / 0.877);
+    transform: scale(1.1);
+}
+
+.sidebar {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #0b7579;
+    padding-top: 60px;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #0b7579;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #map, #history {
+        margin: 10px;
+        flex: none;
+        width: calc(100% - 20px);
+        min-height: 300px; /* Ensure minimum height for the map */
+    }
+
+    #controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #controls button {
+        width: 80%;
+        margin: 5px 0;
+    }
+
+    #history {
+        display: none; /* Hide history by default on smaller screens */
+    }
+
+    .history-menu-button {
+        display: block; /* Show history menu button on smaller screens */
+    }
+
+    .history-only #controls {
+        display: none; /* Hide all controls when in history-only mode */
+    }
+
+    .history-only #history {
+        display: block;
+        width: calc(95% - 18px); /* Full width minus margin */
+        height: calc(95vh - 18px); /* Full height minus margin */
+        margin: 10px; /* Margin of 10px on all sides */
+        border-radius: 0;
+    }
+
+    .history-only #map {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #controls button {
+        width: 90%;
+        font-size: 12px;
+    }
+
+    #historyHeader h2 {
+        font-size: 16px;
+    }
+
+    #historyList li {
+        font-size: 10px;
+    }
+
+    .history-time {
+        font-size: 8px;
+    }
+
+    .history-only #history {
+        margin: 10px 10px 10px 10px; /* Margin of 10px on top and left, 25px on right and bottom */
+        padding: 0;
+        border-radius: 0;
+        height: calc(80vh - 20px); /* Full height minus margin */
+        width: calc(80% - 20px); /* Full width minus margin */
+    }
+}
