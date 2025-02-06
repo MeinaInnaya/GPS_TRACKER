@@ -119,9 +119,9 @@ function toggleStreetView() {
 function toggleTracking() {
     trackingMode = !trackingMode;
     if (trackingMode) {
-        document.getElementById('toggleTracking').textContent = 'STOP TRACKING';
+        document.getElementById('toggleTracking').textContent = 'Stop Tracking';
     } else {
-        document.getElementById('toggleTracking').textContent = 'TRACKING';
+        document.getElementById('toggleTracking').textContent = 'Tracking';
         // Clear the path when tracking is stopped
         pathCoordinates = [];
         polyline.setLatLngs(pathCoordinates);
